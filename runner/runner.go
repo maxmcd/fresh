@@ -6,9 +6,13 @@ import (
 )
 
 func run() bool {
-	runnerLog("Running...")
+	if len(args()) > 0 {
+		runnerLog("Running with args: %v", args())
+	} else {
+		runnerLog("Running...")
+	}
 
-	cmd := exec.Command(buildPath())
+	cmd := exec.Command(buildPath(), args())
 
 	stderr, err := cmd.StderrPipe()
 	if err != nil {
