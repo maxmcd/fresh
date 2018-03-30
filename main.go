@@ -15,8 +15,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/taoza/fresh/runner"
 	"os"
+
+	"github.com/maxmcd/fresh/runner"
 )
 
 func main() {

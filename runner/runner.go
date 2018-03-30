@@ -3,6 +3,7 @@ package runner
 import (
 	"io"
 	"os/exec"
+	"syscall"
 )
 
 func run(args []string) bool {
@@ -31,8 +32,10 @@ func run(args []string) bool {
 	go func() {
 		<-stopChannel
 		pid := cmd.Process.Pid
-		runnerLog("Killing PID %d", pid)
-		cmd.Process.Kill()
+		runnerLog("Terminating PID %d", pid)
+		// cmd.Process.Kill()
+		// cmd.Process.Signal(syscall.SIGINT)
+		cmd.Process.Signal(syscall.SIGTERM)
 	}()
 
 	return true
