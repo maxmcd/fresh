@@ -71,6 +71,8 @@ func start(args []string) {
 				if started {
 					stopChannel <- true
 				}
+				mainLog("waiting a wee bit for previous process to terminate")
+				time.Sleep(2 * time.Second)
 				run(args)
 			}
 
